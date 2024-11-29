@@ -28,10 +28,19 @@ const RegisterForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+    if (name === "mobile") {
+      if (/^\d{0,10}$/.test(value)) {
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          [name]: value,
+        }));
+      }
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    }
   };
 
   const validateForm = () => {
@@ -144,7 +153,7 @@ const RegisterForm = () => {
             <div className="form-col">
               <TextInputComponent
                 label="Mobile"
-                type="text"
+                type="number"
                 placeholder="Enter your mobile number"
                 value={formData.mobile}
                 onChange={handleChange}

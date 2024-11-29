@@ -7,13 +7,9 @@ import { cookie } from "../../controller/Common";
 const DashboardLayout = () => {
   const navigate = useNavigate();
   const logout = () => {
+    cookie.remove("user", { path: "/" });
+    cookie.remove("token", { path: "/" });
     navigate("/login");
-    cookie.set("user", "", {
-      path: "/",
-    });
-    cookie.set("token", "", {
-      path: "/",
-    });
   };
 
   return (
